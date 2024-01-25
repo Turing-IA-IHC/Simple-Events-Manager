@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "fc36f292-6491-4cc3-9bd3-a233b6da8551",
+		"name": "EventTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_base}}/api/event",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"api",
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\": \"Event {{$randomInt}}\",\r\n    \"Description\": \"Event Description\",\r\n    \"Start\": \"2024-01-24T15:00:00\",\r\n    \"End\": \"2024-01-24T16:00:00\",\r\n    \"Latitude\": \"39.5696\",\r\n    \"Longitude\": \"2.6502\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/api/event",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"api",
+						"event"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url_base",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

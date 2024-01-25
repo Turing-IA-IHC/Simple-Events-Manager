@@ -1,0 +1,10 @@
+﻿CREATE TABLE IF NOT EXISTS Events (
+		Id INTEGER PRIMARY KEY, 
+		Name TEXT NOT NULL,
+		Description TEXT NOT NULL,
+		Start REAL NOT NULL,
+		End REAL NOT NULL,
+		Latitude REAL NOT NULL,
+		Longitude REAL NOT NULL,
+		Timezone TEXT NOT NULL
+	);
