@@ -111,7 +111,11 @@ To carry out the code review there are 2 main projects that must be opened:
 	- Views/Event/ : Folder with UI templates to show data.
   
 ## Some images
- 
+![API Methods.](/Docs/API_Methods.png)
+![Home.](/Docs/UI-01-Home.png)
+![List of Events.](/Docs/UI-02-EventList.png)
+![Event detail.](/Docs/UI-03-EventDetail.png)
+![Event create.](/Docs/UI-04-EventCreate.png)
   
 # Thanks!
 
