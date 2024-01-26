@@ -24,6 +24,25 @@
 			"response": []
 		},
 		{
+			"name": "Get Single Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_base}}/api/event/1",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"api",
+						"event",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create new Event",
 			"request": {
 				"method": "POST",

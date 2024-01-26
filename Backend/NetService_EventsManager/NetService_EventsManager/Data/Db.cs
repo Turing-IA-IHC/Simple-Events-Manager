@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Logging;
 using NetService_EventsManager.Models;
 
 
@@ -98,6 +99,43 @@ namespace NetService_EventsManager.Data
                 }
             }
             return events;
+        }
+
+        /// <summary>
+        /// Return a single event from database.
+        /// </summary>
+        public static Event GetEvent(int id)
+        {
+            Event e = null;
+            using (var connection = new SqliteConnection("Data Source=Data/events.db"))
+            {
+                connection.Open();
+
+                using (var command = new SqliteCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "SELECT * FROM events Where Id=@id;";
+                    command.Parameters.AddWithValue("@id", id);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            e = new Event(
+                                reader.GetInt32(0),     // Id
+                                reader.GetString(1),    // Name
+                                reader.GetString(2),    // Description
+                                reader.GetDateTime(3),  // EventStartDate
+                                reader.GetDateTime(4),  // EventEndDate
+                                reader.GetDouble(5),    // Latitude
+                                reader.GetDouble(6)     // Longitude
+                                );
+
+                            e.SetTimeZone(reader.GetString(7)); // TimeZone
+                        }
+                    }
+                }
+            }
+            return e;
         }
     }
 }

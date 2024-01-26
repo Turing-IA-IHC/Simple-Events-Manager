@@ -29,7 +29,7 @@ namespace NetService_EventsManager.Models
         public Event(int id, string name, string description, DateTime start, DateTime end, double latitude, double longitude)
         {
             Id = id;
-            Name = name;
+            Name = name.Length > 32 ? name.Substring(0, 32) : name; // limit to 32 characters to avoid problems with the database
             Description = description;
             Start = start;
             End = end;

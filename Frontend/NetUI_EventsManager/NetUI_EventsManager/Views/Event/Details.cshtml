@@ -1,0 +1,85 @@
+﻿@model NetUI_EventsManager.Models.EventViewModel
+
+@{
+    ViewData["Title"] = "Details of " + Model.Name;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@* <h4>EventViewModel</h4> *@
+<hr />
+
+<div>
+    @* @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) | *@
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<div class="row">
+
+    <div class="col-md-12 col-lg-6">
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Start)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Start)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.End)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.End)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TimeZone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TimeZone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+    </dl>
+
+    </div>
+    <div class="col-md-12 col-lg-6">
+        @{
+            //var loc = "39.5699236,2.598354,12";
+            var lat = Model.Latitude.ToString().Replace(",", ".");
+            var lon = Model.Longitude.ToString().Replace(",", ".");
+            var loc = lat + "%20" + lon;
+        }
+        <div style="width: 100%;">
+            <iframe id="ifmap" width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=@loc+(Event)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+        </div>
+    </div>
+
+
+</div>

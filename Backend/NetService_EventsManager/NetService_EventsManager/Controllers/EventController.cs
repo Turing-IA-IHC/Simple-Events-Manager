@@ -19,6 +19,13 @@ namespace NetService_EventsManager.Controllers
             return Ok(events);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetEvent(int id)
+        {
+            Event evnt = DB.GetEvent(id);
+            return Ok(evnt);
+        }
+
         /// <summary>
         /// Creata an event in database.
         /// </summary>
