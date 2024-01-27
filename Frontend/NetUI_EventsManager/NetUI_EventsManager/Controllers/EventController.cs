@@ -8,14 +8,13 @@ namespace NetUI_EventsManager.Controllers
 {
     public class EventController : Controller
     {
-        Uri baseAdress = new Uri("http://localhost:5321/api/Event");
         private readonly HttpClient _client;
-
-        public EventController()
+        private readonly string _nameController = "Event";
+        public EventController(IConfiguration iConfig)
         {
             CultureInfo.CurrentCulture = new CultureInfo("en-US");
             _client = new HttpClient();
-            _client.BaseAddress = baseAdress;
+            _client.BaseAddress = new Uri(iConfig.GetValue<string>("BaseAdress") ?? "");
         }
 
 
@@ -27,7 +26,7 @@ namespace NetUI_EventsManager.Controllers
         public IActionResult Index()
         {
             List<EventViewModel> events = new List<EventViewModel>();
-            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress).Result;
+            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + _nameController).Result;
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
@@ -61,7 +60,7 @@ namespace NetUI_EventsManager.Controllers
                     eventViewModel.TimeZone = ""; // It is calculated in the API
                     var json = JsonConvert.SerializeObject(eventViewModel);
                     var data = new StringContent(json, Encoding.UTF8, "application/json");
-                    HttpResponseMessage response = _client.PostAsync(_client.BaseAddress, data).Result;
+                    HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + _nameController, data).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         TempData["successMessage"] = "Event created successfully.";
@@ -84,7 +83,7 @@ namespace NetUI_EventsManager.Controllers
         public IActionResult Details(int id)
         {
             EventViewModel eventViewModel = new EventViewModel();
-            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/" + id).Result;
+            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + _nameController + "/" + id).Result;
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
